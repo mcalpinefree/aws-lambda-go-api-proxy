@@ -1,0 +1,233 @@
+# github.com/Bowery/prompt v0.0.0-20190419144237-972d0ceb96f5
+## explicit
+# github.com/BurntSushi/toml v0.3.1
+## explicit
+github.com/BurntSushi/toml
+# github.com/Joker/jade v1.0.0
+## explicit
+github.com/Joker/jade
+# github.com/Shopify/goreferrer v0.0.0-20181106222321-ec9c9a553398
+## explicit
+github.com/Shopify/goreferrer
+# github.com/aws/aws-lambda-go v1.17.0
+## explicit
+github.com/aws/aws-lambda-go/events
+github.com/aws/aws-lambda-go/lambdacontext
+# github.com/aymerick/raymond v2.0.2+incompatible
+## explicit
+github.com/aymerick/raymond
+github.com/aymerick/raymond/ast
+github.com/aymerick/raymond/lexer
+github.com/aymerick/raymond/parser
+# github.com/dchest/safefile v0.0.0-20151022103144-855e8d98f185
+## explicit
+# github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385
+## explicit
+github.com/eknkc/amber
+github.com/eknkc/amber/parser
+# github.com/fatih/structs v1.1.0
+## explicit
+github.com/fatih/structs
+# github.com/flosch/pongo2 v0.0.0-20190707114632-bbf5a6c351f4
+## explicit
+github.com/flosch/pongo2
+# github.com/gin-contrib/sse v0.0.0-20170109093832-22d885f9ecc7
+## explicit
+github.com/gin-contrib/sse
+# github.com/gin-gonic/gin v0.0.0-20180126034611-783c7ee9c14e
+## explicit
+github.com/gin-gonic/gin
+github.com/gin-gonic/gin/binding
+github.com/gin-gonic/gin/json
+github.com/gin-gonic/gin/render
+# github.com/go-chi/chi v0.0.0-20180202194135-e223a795a06a
+## explicit
+github.com/go-chi/chi
+# github.com/golang/protobuf v1.0.0
+## explicit
+github.com/golang/protobuf/proto
+# github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf
+## explicit
+# github.com/google/uuid v0.0.0-20171129191014-dec09d789f3d
+## explicit
+# github.com/gorilla/context v1.1.1
+## explicit
+github.com/gorilla/context
+# github.com/gorilla/mux v0.0.0-20180120075819-c0091a029979
+## explicit
+github.com/gorilla/mux
+# github.com/gorilla/schema v1.1.0
+## explicit
+github.com/gorilla/schema
+# github.com/iris-contrib/blackfriday v2.0.0+incompatible
+## explicit
+github.com/iris-contrib/blackfriday
+# github.com/iris-contrib/formBinder v5.0.0+incompatible
+## explicit
+github.com/iris-contrib/formBinder
+# github.com/iris-contrib/go.uuid v2.0.0+incompatible
+## explicit
+github.com/iris-contrib/go.uuid
+# github.com/json-iterator/go v0.0.0-20180128142709-bca911dae073
+## explicit
+github.com/json-iterator/go
+# github.com/juju/errors v0.0.0-20181118221551-089d3ea4e4d5
+github.com/juju/errors
+# github.com/kardianos/govendor v1.0.9
+## explicit
+# github.com/kataras/golog v0.0.0-20190624001437-99c81de45f40
+## explicit
+github.com/kataras/golog
+# github.com/kataras/iris v11.1.1+incompatible
+## explicit
+github.com/kataras/iris
+github.com/kataras/iris/cache
+github.com/kataras/iris/cache/cfg
+github.com/kataras/iris/cache/client
+github.com/kataras/iris/cache/client/rule
+github.com/kataras/iris/cache/entry
+github.com/kataras/iris/cache/ruleset
+github.com/kataras/iris/cache/uri
+github.com/kataras/iris/context
+github.com/kataras/iris/core/errors
+github.com/kataras/iris/core/handlerconv
+github.com/kataras/iris/core/host
+github.com/kataras/iris/core/memstore
+github.com/kataras/iris/core/netutil
+github.com/kataras/iris/core/router
+github.com/kataras/iris/macro
+github.com/kataras/iris/macro/handler
+github.com/kataras/iris/macro/interpreter/ast
+github.com/kataras/iris/macro/interpreter/lexer
+github.com/kataras/iris/macro/interpreter/parser
+github.com/kataras/iris/macro/interpreter/token
+github.com/kataras/iris/middleware/logger
+github.com/kataras/iris/middleware/recover
+github.com/kataras/iris/view
+# github.com/kataras/pio v0.0.0-20190103105442-ea782b38602d
+## explicit
+github.com/kataras/pio
+github.com/kataras/pio/terminal
+# github.com/klauspost/compress v1.7.4
+## explicit
+github.com/klauspost/compress/flate
+github.com/klauspost/compress/gzip
+# github.com/klauspost/cpuid v1.2.1
+## explicit
+github.com/klauspost/cpuid
+# github.com/labstack/echo v3.3.10+incompatible
+## explicit
+github.com/labstack/echo
+# github.com/labstack/echo/v4 v4.1.16
+## explicit
+github.com/labstack/echo/v4
+# github.com/labstack/gommon v0.3.0
+github.com/labstack/gommon/color
+github.com/labstack/gommon/log
+# github.com/mattn/go-colorable v0.1.6
+github.com/mattn/go-colorable
+# github.com/mattn/go-isatty v0.0.12
+## explicit
+github.com/mattn/go-isatty
+# github.com/microcosm-cc/bluemonday v1.0.2
+## explicit
+github.com/microcosm-cc/bluemonday
+# github.com/onsi/ginkgo v0.0.0-20180119174237-747514b53ddd
+## explicit
+github.com/onsi/ginkgo
+github.com/onsi/ginkgo/config
+github.com/onsi/ginkgo/internal/codelocation
+github.com/onsi/ginkgo/internal/containernode
+github.com/onsi/ginkgo/internal/failer
+github.com/onsi/ginkgo/internal/leafnodes
+github.com/onsi/ginkgo/internal/remote
+github.com/onsi/ginkgo/internal/spec
+github.com/onsi/ginkgo/internal/spec_iterator
+github.com/onsi/ginkgo/internal/specrunner
+github.com/onsi/ginkgo/internal/suite
+github.com/onsi/ginkgo/internal/testingtproxy
+github.com/onsi/ginkgo/internal/writer
+github.com/onsi/ginkgo/reporters
+github.com/onsi/ginkgo/reporters/stenographer
+github.com/onsi/ginkgo/reporters/stenographer/support/go-colorable
+github.com/onsi/ginkgo/reporters/stenographer/support/go-isatty
+github.com/onsi/ginkgo/types
+# github.com/onsi/gomega v1.3.0
+## explicit
+github.com/onsi/gomega
+github.com/onsi/gomega/format
+github.com/onsi/gomega/internal/assertion
+github.com/onsi/gomega/internal/asyncassertion
+github.com/onsi/gomega/internal/oraclematcher
+github.com/onsi/gomega/internal/testingtsupport
+github.com/onsi/gomega/matchers
+github.com/onsi/gomega/matchers/support/goraph/bipartitegraph
+github.com/onsi/gomega/matchers/support/goraph/edge
+github.com/onsi/gomega/matchers/support/goraph/node
+github.com/onsi/gomega/matchers/support/goraph/util
+github.com/onsi/gomega/types
+# github.com/pkg/errors v0.8.1
+## explicit
+# github.com/ryanuber/columnize v2.1.0+incompatible
+## explicit
+github.com/ryanuber/columnize
+# github.com/shurcooL/sanitized_anchor_name v1.0.0
+## explicit
+github.com/shurcooL/sanitized_anchor_name
+# github.com/ugorji/go v0.0.0-20180129160544-d2b24cf3d3b4
+## explicit
+github.com/ugorji/go/codec
+# github.com/urfave/negroni v0.0.0-20180130044549-22c5532ea862
+## explicit
+github.com/urfave/negroni
+# github.com/valyala/bytebufferpool v1.0.0
+github.com/valyala/bytebufferpool
+# github.com/valyala/fasttemplate v1.1.0
+github.com/valyala/fasttemplate
+# golang.org/x/crypto v0.0.0-20200221231518-2aa609cf4a9d
+golang.org/x/crypto/acme
+golang.org/x/crypto/acme/autocert
+# golang.org/x/net v0.0.0-20200226121028-0de0cce0169b
+## explicit
+golang.org/x/net/html
+golang.org/x/net/html/atom
+golang.org/x/net/html/charset
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2
+golang.org/x/net/http2/h2c
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
+golang.org/x/net/publicsuffix
+# golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae
+## explicit
+golang.org/x/sys/unix
+# golang.org/x/text v0.3.2
+## explicit
+golang.org/x/text/encoding
+golang.org/x/text/encoding/charmap
+golang.org/x/text/encoding/htmlindex
+golang.org/x/text/encoding/internal
+golang.org/x/text/encoding/internal/identifier
+golang.org/x/text/encoding/japanese
+golang.org/x/text/encoding/korean
+golang.org/x/text/encoding/simplifiedchinese
+golang.org/x/text/encoding/traditionalchinese
+golang.org/x/text/encoding/unicode
+golang.org/x/text/internal/language
+golang.org/x/text/internal/language/compact
+golang.org/x/text/internal/tag
+golang.org/x/text/internal/utf8internal
+golang.org/x/text/language
+golang.org/x/text/runes
+golang.org/x/text/secure/bidirule
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+# golang.org/x/tools v0.0.0-20190506145303-2d16b83fe98c
+## explicit
+# gopkg.in/go-playground/validator.v8 v8.18.2
+## explicit
+gopkg.in/go-playground/validator.v8
+# gopkg.in/yaml.v2 v2.2.2
+## explicit
+gopkg.in/yaml.v2
