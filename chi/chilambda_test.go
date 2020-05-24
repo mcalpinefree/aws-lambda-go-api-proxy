@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/aws/aws-lambda-go/events"
-	chiadapter "github.com/awslabs/aws-lambda-go-api-proxy/chi"
+	chiadapter "github.com/mcalpinefree/aws-lambda-go-api-proxy/chi"
 	"github.com/go-chi/chi"
 
 	. "github.com/onsi/ginkgo"
