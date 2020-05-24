@@ -18,10 +18,10 @@ const contentTypeHeaderKey = "Content-Type"
 // ProxyResponseWriter implements http.ResponseWriter and adds the method
 // necessary to return an events.APIGatewayProxyResponse object
 type ProxyResponseWriter struct {
-	headers http.Header
-	body    bytes.Buffer
-	status  int
-	observers []chan <-bool
+	headers   http.Header
+	body      bytes.Buffer
+	status    int
+	observers []chan<- bool
 }
 
 // NewProxyResponseWriter returns a new ProxyResponseWriter object.
@@ -29,8 +29,8 @@ type ProxyResponseWriter struct {
 // status code of -1
 func NewProxyResponseWriter() *ProxyResponseWriter {
 	return &ProxyResponseWriter{
-		headers: make(http.Header),
-		status:  defaultStatusCode,
+		headers:   make(http.Header),
+		status:    defaultStatusCode,
 		observers: make([]chan<- bool, 0),
 	}
 
@@ -111,7 +111,41 @@ func (r *ProxyResponseWriter) GetProxyResponse() (events.APIGatewayProxyResponse
 
 	return events.APIGatewayProxyResponse{
 		StatusCode:        r.status,
-		Headers:         proxyHeaders,
+		Headers:           proxyHeaders,
+		MultiValueHeaders: http.Header(r.headers),
+		Body:              output,
+		IsBase64Encoded:   isBase64,
+	}, nil
+}
+
+func (r *ProxyResponseWriter) GetProxyResponseV2() (events.APIGatewayV2HTTPResponse, error) {
+	r.notifyClosed()
+
+	if r.status == defaultStatusCode {
+		return events.APIGatewayV2HTTPResponse{}, errors.New("Status code not set on response")
+	}
+
+	var output string
+	isBase64 := false
+
+	bb := (&r.body).Bytes()
+
+	if utf8.Valid(bb) {
+		output = string(bb)
+	} else {
+		output = base64.StdEncoding.EncodeToString(bb)
+		isBase64 = true
+	}
+
+	proxyHeaders := make(map[string]string)
+
+	for h := range r.headers {
+		proxyHeaders[h] = r.headers.Get(h)
+	}
+
+	return events.APIGatewayV2HTTPResponse{
+		StatusCode:        r.status,
+		Headers:           proxyHeaders,
 		MultiValueHeaders: http.Header(r.headers),
 		Body:              output,
 		IsBase64Encoded:   isBase64,
