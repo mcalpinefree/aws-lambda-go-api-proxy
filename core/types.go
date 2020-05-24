@@ -12,6 +12,10 @@ func GatewayTimeout() events.APIGatewayProxyResponse {
 	return events.APIGatewayProxyResponse{StatusCode: http.StatusGatewayTimeout}
 }
 
+func GatewayTimeoutV2() events.APIGatewayV2HTTPResponse {
+	return events.APIGatewayV2HTTPResponse{StatusCode: http.StatusGatewayTimeout}
+}
+
 // NewLoggedError generates a new error and logs it to stdout
 func NewLoggedError(format string, a ...interface{}) error {
 	err := fmt.Errorf(format, a...)

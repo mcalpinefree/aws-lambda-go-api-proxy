@@ -116,6 +116,15 @@ func (r *RequestAccessor) ProxyEventToHTTPRequest(req events.APIGatewayProxyRequ
 	return addToHeader(httpRequest, req)
 }
 
+func (r *RequestAccessor) ProxyEventToHTTPRequestV2(req events.APIGatewayV2HTTPRequest) (*http.Request, error) {
+	httpRequest, err := r.EventToRequestV2(req)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	return addToHeaderV2(httpRequest, req)
+}
+
 // EventToRequestWithContext converts an API Gateway proxy event and context into an http.Request object.
 // Returns the populated http request with lambda context, stage variables and APIGatewayProxyRequestContext as part of its context.
 // Access those using GetAPIGatewayContextFromContext, GetStageVarsFromContext and GetRuntimeContextFromContext functions in this package.
@@ -126,6 +135,15 @@ func (r *RequestAccessor) EventToRequestWithContext(ctx context.Context, req eve
 		return nil, err
 	}
 	return addToContext(ctx, httpRequest, req), nil
+}
+
+func (r *RequestAccessor) EventToRequestWithContextV2(ctx context.Context, req events.APIGatewayV2HTTPRequest) (*http.Request, error) {
+	httpRequest, err := r.EventToRequestV2(req)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	return addToContextV2(ctx, httpRequest, req), nil
 }
 
 // EventToRequest converts an API Gateway proxy event into an http.Request object.
@@ -196,7 +214,90 @@ func (r *RequestAccessor) EventToRequest(req events.APIGatewayProxyRequest) (*ht
 	return httpRequest, nil
 }
 
+func (r *RequestAccessor) EventToRequestV2(req events.APIGatewayV2HTTPRequest) (*http.Request, error) {
+	decodedBody := []byte(req.Body)
+	if req.IsBase64Encoded {
+		base64Body, err := base64.StdEncoding.DecodeString(req.Body)
+		if err != nil {
+			return nil, err
+		}
+		decodedBody = base64Body
+	}
+
+	path := req.RequestContext.HTTP.Path
+	if r.stripBasePath != "" && len(r.stripBasePath) > 1 {
+		if strings.HasPrefix(path, r.stripBasePath) {
+			path = strings.Replace(path, r.stripBasePath, "", 1)
+		}
+	}
+	if !strings.HasPrefix(path, "/") {
+		path = "/" + path
+	}
+	serverAddress := DefaultServerAddress
+	if customAddress, ok := os.LookupEnv(CustomHostVariable); ok {
+		serverAddress = customAddress
+	}
+	path = serverAddress + path
+
+	if len(req.QueryStringParameters) > 0 {
+		queryString := ""
+		for q, l := range req.QueryStringParameters {
+			values := strings.Split(l, ",")
+			for _, v := range values {
+				if queryString != "" {
+					queryString += "&"
+				}
+				queryString += url.QueryEscape(q) + "=" + url.QueryEscape(v)
+			}
+		}
+		path += "?" + queryString
+	} else if len(req.QueryStringParameters) > 0 {
+		// Support `QueryStringParameters` for backward compatibility.
+		// https://github.com/awslabs/aws-lambda-go-api-proxy/issues/37
+		queryString := ""
+		for q := range req.QueryStringParameters {
+			if queryString != "" {
+				queryString += "&"
+			}
+			queryString += url.QueryEscape(q) + "=" + url.QueryEscape(req.QueryStringParameters[q])
+		}
+		path += "?" + queryString
+	}
+
+	httpRequest, err := http.NewRequest(
+		strings.ToUpper(req.RequestContext.HTTP.Method),
+		path,
+		bytes.NewReader(decodedBody),
+	)
+
+	if err != nil {
+		fmt.Printf("Could not convert request %s:%s to http.Request\n", req.RequestContext.HTTP.Method, req.RequestContext.HTTP.Path)
+		log.Println(err)
+		return nil, err
+	}
+	for h := range req.Headers {
+		httpRequest.Header.Add(h, req.Headers[h])
+	}
+	return httpRequest, nil
+}
+
 func addToHeader(req *http.Request, apiGwRequest events.APIGatewayProxyRequest) (*http.Request, error) {
+	stageVars, err := json.Marshal(apiGwRequest.StageVariables)
+	if err != nil {
+		log.Println("Could not marshal stage variables for custom header")
+		return nil, err
+	}
+	req.Header.Add(APIGwStageVarsHeader, string(stageVars))
+	apiGwContext, err := json.Marshal(apiGwRequest.RequestContext)
+	if err != nil {
+		log.Println("Could not Marshal API GW context for custom header")
+		return req, err
+	}
+	req.Header.Add(APIGwContextHeader, string(apiGwContext))
+	return req, nil
+}
+
+func addToHeaderV2(req *http.Request, apiGwRequest events.APIGatewayV2HTTPRequest) (*http.Request, error) {
 	stageVars, err := json.Marshal(apiGwRequest.StageVariables)
 	if err != nil {
 		log.Println("Could not marshal stage variables for custom header")
@@ -215,6 +316,13 @@ func addToHeader(req *http.Request, apiGwRequest events.APIGatewayProxyRequest) 
 func addToContext(ctx context.Context, req *http.Request, apiGwRequest events.APIGatewayProxyRequest) *http.Request {
 	lc, _ := lambdacontext.FromContext(ctx)
 	rc := requestContext{lambdaContext: lc, gatewayProxyContext: apiGwRequest.RequestContext, stageVars: apiGwRequest.StageVariables}
+	ctx = context.WithValue(ctx, ctxKey{}, rc)
+	return req.WithContext(ctx)
+}
+
+func addToContextV2(ctx context.Context, req *http.Request, apiGwRequest events.APIGatewayV2HTTPRequest) *http.Request {
+	lc, _ := lambdacontext.FromContext(ctx)
+	rc := requestContextV2{lambdaContext: lc, gatewayProxyContext: apiGwRequest.RequestContext, stageVars: apiGwRequest.StageVariables}
 	ctx = context.WithValue(ctx, ctxKey{}, rc)
 	return req.WithContext(ctx)
 }
@@ -242,5 +350,11 @@ type ctxKey struct{}
 type requestContext struct {
 	lambdaContext       *lambdacontext.LambdaContext
 	gatewayProxyContext events.APIGatewayProxyRequestContext
+	stageVars           map[string]string
+}
+
+type requestContextV2 struct {
+	lambdaContext       *lambdacontext.LambdaContext
+	gatewayProxyContext events.APIGatewayV2HTTPRequestContext
 	stageVars           map[string]string
 }
