@@ -5,7 +5,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/labstack/echo/v4"
-	"github.com/awslabs/aws-lambda-go-api-proxy/echov4"
+	"github.com/mcalpinefree/aws-lambda-go-api-proxy/echov4"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

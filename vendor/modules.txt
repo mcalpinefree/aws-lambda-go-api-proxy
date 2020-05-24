@@ -13,6 +13,17 @@ github.com/Shopify/goreferrer
 ## explicit
 github.com/aws/aws-lambda-go/events
 github.com/aws/aws-lambda-go/lambdacontext
+# github.com/awslabs/aws-lambda-go-api-proxy v0.6.0
+## explicit
+github.com/awslabs/aws-lambda-go-api-proxy/chi
+github.com/awslabs/aws-lambda-go-api-proxy/core
+github.com/awslabs/aws-lambda-go-api-proxy/echo
+github.com/awslabs/aws-lambda-go-api-proxy/gin
+github.com/awslabs/aws-lambda-go-api-proxy/gorillamux
+github.com/awslabs/aws-lambda-go-api-proxy/handlerfunc
+github.com/awslabs/aws-lambda-go-api-proxy/httpadapter
+github.com/awslabs/aws-lambda-go-api-proxy/iris
+github.com/awslabs/aws-lambda-go-api-proxy/negroni
 # github.com/aymerick/raymond v2.0.2+incompatible
 ## explicit
 github.com/aymerick/raymond
@@ -231,4 +242,3 @@ gopkg.in/go-playground/validator.v8
 # gopkg.in/yaml.v2 v2.2.2
 ## explicit
 gopkg.in/yaml.v2
-# github.com/awslabs => ./

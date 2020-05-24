@@ -1,4 +1,4 @@
-module github.com/awslabs/aws-lambda-go-api-proxy
+module github.com/mcalpinefree/aws-lambda-go-api-proxy
 
 go 1.14
 
@@ -8,6 +8,7 @@ require (
 	github.com/Joker/jade v1.0.0 // indirect
 	github.com/Shopify/goreferrer v0.0.0-20181106222321-ec9c9a553398 // indirect
 	github.com/aws/aws-lambda-go v1.17.0
+	github.com/awslabs/aws-lambda-go-api-proxy v0.6.0
 	github.com/aymerick/raymond v2.0.2+incompatible // indirect
 	github.com/dchest/safefile v0.0.0-20151022103144-855e8d98f185 // indirect
 	github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385 // indirect
@@ -50,5 +51,3 @@ require (
 	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
-
-replace github.com/awslabs => ./
